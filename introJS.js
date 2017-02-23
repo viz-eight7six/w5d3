@@ -226,3 +226,40 @@ function subsets(array) {
 
 
 console.log(subsets([1,2,3]))
+
+
+class Cat {
+  constructor(name, owner){
+    this.name = name
+    this.owner = owner
+  }
+}
+
+Cat.prototype.cuteStatement = function() {
+  return `${this.owner} loves ${this.name}`
+}
+
+let g = new Cat("george", "greg")
+let b = new Cat("Bob", "Everyone")
+
+console.log(g.cuteStatement())
+
+Cat.prototype.cuteStatement = function() {
+  return `Everyone loves ${this.name}`
+}
+
+console.log(g.cuteStatement())
+
+Cat.prototype.meow = function() {
+  return `${this.name} meows`
+}
+
+console.log(g.meow())
+console.log(b.meow())
+
+b.meow = function() {
+  return `Everyone meows`
+}
+
+console.log(b.meow())
+console.log(g.meow())
