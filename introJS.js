@@ -183,10 +183,46 @@ console.log(bsearch([1, 2, 3, 4, 5, 6], 6))
 console.log(bsearch([1, 2, 3, 4, 5, 6], 0))
 console.log(bsearch([1, 2, 3, 4, 5, 7], 6))
 
+function merge(left, right){
+  const new_arr = []
+  while (left.length > 0 && right.length > 0){
+    if(left[0] < right[0]){
+      new_arr.push(left.shift())
+    }
+    else {
+      new_arr.push(right.shift())
+    }
+  }
+  return new_arr.concat(left, right)
+}
 
-// function merge_sort(array){
-//   let midpoint = Math.floor(array.length/2)
-//   let left = array.slice(0, midpoint)
-//   let right = array.slice(midpoint, array.length)
-//
-// }
+function merge_sort(array){
+  if (array.length < 2){
+    return array
+  }
+  else{
+    const midpoint = Math.floor(array.length/2)
+    const left = array.slice(0, midpoint)
+    const right = array.slice(midpoint, array.length)
+    const sorted_left = merge_sort(left)
+    const sorted_right = merge_sort(right)
+    return merge(sorted_left, sorted_right)
+  }
+}
+
+
+console.log(merge_sort([3,2,4,23,5,1]))
+
+function subsets(array) {
+  if (array.length < 1) {
+    return [[]]
+  }
+  const old_subsets = subsets(array.slice(0,array.length-1))
+  const a_arr = old_subsets.map(el => el.concat([array[array.length-1]]))
+  const new_subsets = old_subsets.concat(a_arr)
+  return new_subsets
+
+}
+
+
+console.log(subsets([1,2,3]))
